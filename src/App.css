@@ -1,22 +1,125 @@
 .App {
   text-align: center;
+  font-family: 'Montserrat', sans-serif;
 }
 
-.App-logo {
-  height: 40vmin;
+.btn-create{
+  background-color: wheat;
+  color:black;
+  font-family: 'Montserrat', sans-serif;
+  border-color: whitesmoke
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
+.bg-dashboard{
+  background: #FFEFBA;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #FFFFFF, #FFEFBA);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #FFFFFF, #FFEFBA); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  height: 100%;
+  padding-bottom: 30px;
+  
+  }
+  .list-product{
+    display: inline-block;
+    padding: 1em 1em 1em 1em
+  }
+  .image-product{
+    width: 328px;
+    height: 200px;
+    object-fit: cover;
+  }
 
-.App-link {
-  color: #09d3ac;
+  .container-img {
+    position: relative;
+  }
+ 
+
+  .btn-1 {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(60px, -90px);
+    -ms-transform: translate(-50%, -50%);
+    color: white;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    width: 40px;
+    padding: 20px 20px 20px 20px;;
+    background-size: 40px;
+    background-image: url(./Asset/edit2.svg);
+    background-repeat: no-repeat;
+    background-color: #FFEFBA;
+    border: 1px solid grey;
+
+  }
+  
+  .btn-1:hover{
+    background-color: #ef473a;
+    border: 1px solid whitesmoke;
+  }
+  .btn-2 {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(110px, -90px);
+    -ms-transform: translate(110px, -90px);
+    color: white;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    width: 40px;
+    padding: 20px 20px 20px 20px;;
+    background-size: 40px;
+    background-image: url(./Asset/delete.svg);
+    background-repeat: no-repeat;
+    background-color: #FFEFBA;
+    border: 1px solid grey;
+  }
+  .btn-2:hover{
+    background-color: #ef473a;
+    border: 1px solid whitesmoke;
+  }
+  
+
+
+@media only screen and (max-width : 480px) {
+  .text{
+    color:grey;
+  }
+  }
+
+@media only screen and (min-width: 480px){
+ .text{
+   color:red;
+ }
+
+   
 }
+@media only screen and (min-width: 768px){
+  .text{
+    color:black;
+  }
+ 
+
+   
+  }
+   
+  @media only screen and (min-width: 992px){
+    .text{
+      color:red;
+    }
+   
+
+   
+  }
+   
+   
+  @media only screen and (min-width: 1200px){
+   
+    .text{
+      color:black;
+    }
+   
+  }
