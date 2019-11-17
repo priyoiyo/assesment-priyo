@@ -1,0 +1,4 @@
+Dari dokumen https://testbinar.docs.apiary.io/, 
+
+Menurut saya design yang di buat sudah cukup baik, karena mudah dimengerti dan diimplementasikan.
+Tetapi untuk tingkat lanjut, UI dan UX yang diperlukan terhadap client akan lebih kompleks
