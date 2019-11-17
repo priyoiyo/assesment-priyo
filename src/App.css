@@ -25,6 +25,7 @@
   .image-product{
     width: 328px;
     height: 200px;
+    background-color: white;
     object-fit: cover;
   }
 

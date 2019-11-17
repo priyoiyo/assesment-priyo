@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Form, FormGroup, Input} from 'reactstrap';
 
 
@@ -13,6 +13,31 @@ const CreateProduct = (props) => {
   const [productPrice, setProductPrice] = useState('');
   const [imageUrl, setImageUrl] = useState('');
   const toggle = () => setModal(!modal);
+
+
+  const handleSubmit = (event) => {
+    event.preventDefault()
+
+    fetch('https://test-binar.herokuapp.com/v1/products/', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': sessionStorage.getItem('token')
+        },
+        body: JSON.stringify({ name:productName, price:productPrice, imageurl:imageUrl })
+    }).then(response => response.json())
+        .then((data) => {
+            if (data.result) {
+              console.log(data.result)
+                window.location.reload()
+            } else {
+                return
+            }
+        })
+        .then(() => setModal(!modal))
+}
+
+
 
   return (
     <div>
@@ -36,7 +61,7 @@ const CreateProduct = (props) => {
         </Form>
         </ModalBody>
         <ModalFooter>
-          <Button color="primary" onClick={toggle}>Do Something</Button>{' '}
+          <Button color="primary" onClick={handleSubmit}>Create</Button>
           <Button color="secondary" onClick={toggle}>Cancel</Button>
         </ModalFooter>
       </Modal>
@@ -55,7 +80,8 @@ const CreateProduct = (props) => {
   }
   function handleImageUrl(event) {
 		setImageUrl(event.target.value);
-	}
+  }
+  
   
 }
 

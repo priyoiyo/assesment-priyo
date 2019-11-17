@@ -9,29 +9,33 @@ class ProductList extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            guestListArray:[]
+            productArray:[]
         }
     }
 
     componentDidMount(){
-        axios.get('https://reduxblog.herokuapp.com/api/posts?key=tugas-pri-1-portofolio')
-        .then((response)=>{
-            
+       
+        axios.get(
+            'https://test-binar.herokuapp.com/v1/products',
+            {headers: {
+                "Authorization" : sessionStorage.getItem("token")
+              }
+            }
+          )
+          .then((response) => {
+            console.log(response)
             this.setState(state=>({
-                        guestListArray: [...state.guestListArray, ...response.data]
+                        productArray: [...state.productArray, ...response.data.result]
                     }))
-
-        })
-        // .then(response=>response.json())
-        // .then(data=>{
-        //     this.setState(state=>({
-        //         guestListArray: [...state.guestListArray, ...data]
-        //     }))
-        // })
+            },
+            
+          );
+      
     }
 
     render() {
         //get()
+        
         return (
             <div >
 
@@ -40,12 +44,12 @@ class ProductList extends React.Component {
 
                 <ul style={{listStyle:'none', justifyContent:"left", paddingLeft:"0", textAlign: 'center'}}>
                     {
-                        this.state.guestListArray.map(guestList=>{
+                        this.state.productArray.map(productList=>{
                             return(
-                                <li key={guestList.id} className="list-product" >
+                                <li key={productList.id} className="list-product" >
                                     <Card style={{width:"330px", textAlign:"left"}}>
         <div className="container-img">
-        <CardImg top className="image-product" src={guestList.content} alt="Card image cap" />
+        <CardImg top className="image-product" src={productList.imageurl} onError={(e)=>{e.target.src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTNls3BfPsAcwmSgY9XuPtH4KTMCuPOqwziM3DulX4j6zvRTp8_" }} alt="Card image cap" />
         <EditProduct className="btn-1"/>
         <DeleteProduct className="btn-2"/>
         {/* <Button className="btn-1"></Button> <Button className="btn-2"></Button> */}
@@ -53,9 +57,9 @@ class ProductList extends React.Component {
         
         <CardBody>
         
-          <CardTitle>{guestList.title}</CardTitle>
+          <CardTitle>{productList.name}</CardTitle>
      
-          <CardText>{guestList.categories}</CardText>
+          <CardText>{productList.price}</CardText>
         </CardBody>
         
       </Card>

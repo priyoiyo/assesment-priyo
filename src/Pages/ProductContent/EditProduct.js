@@ -1,18 +1,40 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Form, FormGroup, Input } from 'reactstrap';
 
 
 const EditProduct = (props) => {
   const {
     buttonLabel,
-    className
+    className,
+    id
   } = props;
 
   const [modal, setModal] = useState(false);
-  const [productName, setProductName] = useState(null);
+  const [productName, setProductName] = useState('');
   const [productPrice, setProductPrice] = useState('');
-  const [imageUrl, setImageUrl] = useState(null);
+  const [imageUrl, setImageUrl] = useState('');
+  
   const toggle = () => setModal(!modal);
+
+  useEffect(() => {
+    fetch(`https://test-binar.herokuapp.com/v1/products/${props.id}`, {
+			method: 'GET',
+			headers: {
+				'Content-Type': 'application/json',
+				'Authorization': sessionStorage.getItem('token')
+			}
+		})
+		.then(response => response.json())
+		.then(result => {
+      setProductName(result.data.result.name);
+      setProductPrice(result.data.result.price);
+      setImageUrl(result.data.result.imageUrl);
+      console.log(result.data.result)
+    })
+		.catch(err => err);
+	
+
+  })
 
   return (
     <div>
